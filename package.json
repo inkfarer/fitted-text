@@ -1,0 +1,20 @@
+{
+    "name": "fitted-text",
+    "version": "1.0.0",
+    "description": "",
+    "author": {
+        "name": "inkfarer",
+        "email": "inkfarer@inkfarer.com",
+        "url": "https://inkfarer.com"
+    },
+    "main": "dist/fitted-text.js",
+    "types": "dist/fitted-text.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "prepublish": "tsc"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "typescript": "^3.8.3"
+    }
+}

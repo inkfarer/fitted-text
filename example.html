@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>fitted-text Testing grounds</title>
+	<style>
+		fitted-text {
+			font-family: sans-serif;
+			font-size: 5em;
+		}
+	</style>
+</head>
+<body>
+	<h1>Fitted-Text example page</h1>
+	<fitted-text max-width="500" align="center" text="First Example First Example"></fitted-text>
+	<fitted-text max-width="500" align="right" text="Right Align"></fitted-text>
+	<fitted-text max-width="500" text="Left Align"></fitted-text>
+	<fitted-text max-width="500" align="center" text="Center Align"></fitted-text>
+	<fitted-text max-width="500" align="center" class="js-edited-text"></fitted-text>
+	<fitted-text max-width="500" align="left" id="test" useInnerHTML text="<i>HTML Tags are optionally supported</i>"></fitted-text>
+
+	<script src="dist/fitted-text.js"></script>
+	<script>
+		document.querySelector('.js-edited-text').setAttribute('text', 'Text set using JavaScript');
+	</script>
+</body>
+</html>
