@@ -2,8 +2,7 @@
 
 Horizontally squishes a line of text down to a set limit.
 
-Built to be a vanilla JS alternative to
-[sc-fitted-text](https://github.com/SupportClass/sc-fitted-text).
+Built to be a vanilla JS alternative to [sc-fitted-text](https://github.com/SupportClass/sc-fitted-text).
 
 ## Install & Usage
 
@@ -24,11 +23,10 @@ Use the element as follows:
 </fitted-text>
 ```
 
-In JavaScript, the element's properties can be edited using the
-`setAttribute()` function.
+The element's properties can be edited using JS as follows:
 
 ```js
-document.getElementById('fit-text').setAttribute('text', 'Text set using JavaScript');
+document.getElementById('fit-text').text = 'Text set using JavaScript';
 ```
 
 For the element to use HTML tags, use the `useInnerHTML` attribute:
@@ -38,14 +36,13 @@ For the element to use HTML tags, use the `useInnerHTML` attribute:
 	text="<i>Text</i>"
 	max-width="100"
 	align="right"
-	useInnerHTML
+	use-inner-html
 	id="html-fit-text">
 </fitted-text>
 ```
 
 ```js
-document.getElementById('html-fit-text').removeAttribute('useInnerHTML');
-document.getElementById('html-fit-text').setAttribute('useInnerHTML', '');
+document.getElementById('html-fit-text').useInnerHTML = true;
 ```
 
 For a demonstration of all the element's capabilities, 
