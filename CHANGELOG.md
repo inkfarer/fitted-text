@@ -1,3 +1,7 @@
+## [2.0.2]
+
+- Fix transforms not applying when creating the element in some cases
+
 ## [2.0.1]
 
 - Fix `max-width` changes not applying when original value is unset

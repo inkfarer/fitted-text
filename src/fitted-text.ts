@@ -31,6 +31,7 @@ class FittedText extends HTMLElement {
 			text-align: ${align};
 		`));
         this.appendChild(this.fittedContent);
+        this.setTransform();
     }
 
 	static get observedAttributes() { return ['text', 'max-width', 'align', 'use-inner-html']; }

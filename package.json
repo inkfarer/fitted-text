@@ -1,6 +1,6 @@
 {
     "name": "fitted-text",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "An element that horizontally squishes a line of text to a specific width.",
     "homepage": "https://github.com/inkfarer/fitted-text",
     "author": {
