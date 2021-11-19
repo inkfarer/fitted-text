@@ -1,3 +1,7 @@
+## [2.0.3]
+
+- Fix inline styles being overwritten on element creation
+
 ## [2.0.2]
 
 - Fix transforms not applying when creating the element in some cases

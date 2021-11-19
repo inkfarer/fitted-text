@@ -20,12 +20,10 @@ class FittedText extends HTMLElement {
     connectedCallback() {
         const align: string = this.getAttribute('align') || 'left';
         this.innerHTML = '';
-        this.setAttribute('style', this.removeLineBreaks(`
-			display: flex;
-			position: relative;
-			white-space: nowrap;
-			justify-content: ${this.getJustify(align)}
-		`));
+        this.style.display = 'flex';
+        this.style.position = 'relative';
+        this.style.whiteSpace = 'nowrap';
+        this.style.justifyContent = this.getJustify(align);
         this.fittedContent.setAttribute('style', this.removeLineBreaks(`
 			transform-origin: ${align} center;
 			text-align: ${align};
