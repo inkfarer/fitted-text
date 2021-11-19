@@ -24,7 +24,6 @@ class FittedText extends HTMLElement {
 			display: flex;
 			position: relative;
 			white-space: nowrap;
-			max-width: ${this.maxWidth > 0 ? this.maxWidth + 'px' : 'unset'};
 			justify-content: ${this.getJustify(align)}
 		`));
         this.fittedContent.setAttribute('style', this.removeLineBreaks(`
@@ -32,7 +31,6 @@ class FittedText extends HTMLElement {
 			text-align: ${align};
 		`));
         this.appendChild(this.fittedContent);
-        this.setTransform();
     }
 
 	static get observedAttributes() { return ['text', 'max-width', 'align', 'use-inner-html']; }
@@ -42,22 +40,20 @@ class FittedText extends HTMLElement {
             case 'text':
                 this.setText();
                 this.setTransform();
-                return;
+                break;
             case 'max-width':
-                if (oldValue) {
-                    this.style.maxWidth = `${this.maxWidth > 0 ? this.maxWidth + 'px' : 'unset'}`;
-                    this.setTransform();
-                }
-                return;
+                this.style.maxWidth = `${this.maxWidth > 0 ? this.maxWidth + 'px' : 'unset'}`;
+                this.setTransform();
+                break;
             case 'align':
                 this.style.justifyContent = this.getJustify(newValue);
                 this.fittedContent.style.textAlign = newValue;
                 this.fittedContent.style.transformOrigin = `${newValue} center`;
-                return;
+                break;
             case 'use-inner-html':
                 this.setText();
                 this.setTransform();
-                return;
+                break;
         }
     }
 

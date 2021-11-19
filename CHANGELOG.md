@@ -1,3 +1,7 @@
+## [2.0.1]
+
+- Fix `max-width` changes not applying when original value is unset
+
 ## [2.0.0]
 
 - Allow for easier editing of attributes in JS 
