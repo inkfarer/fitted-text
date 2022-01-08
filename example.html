@@ -19,10 +19,19 @@
 <fitted-text max-width="500" align="center" text="Center Align"></fitted-text>
 <fitted-text max-width="500" align="center" class="js-edited-text"></fitted-text>
 <fitted-text max-width="500" align="left" id="test" use-inner-html text="<i>HTML Tags are optionally supported</i>"></fitted-text>
+<div id="display-none-test" style="display: none">
+    <fitted-text max-width="500" text="Hidden Element Hidden Element"></fitted-text>
+</div>
+
+<button onclick="showDisplayNoneTest()">Show display: none test</button>
 
 <script src="dist/fitted-text.js"></script>
 <script>
     document.querySelector('.js-edited-text').text = 'Text set using JavaScript';
+
+    function showDisplayNoneTest() {
+        document.getElementById('display-none-test').style.display = 'block';
+    }
 </script>
 </body>
 </html>

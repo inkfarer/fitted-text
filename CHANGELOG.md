@@ -1,3 +1,7 @@
+## [2.0.4]
+
+- Fix transforms not being applied when element is hidden using `display: none`
+
 ## [2.0.3]
 
 - Fix inline styles being overwritten on element creation

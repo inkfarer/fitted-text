@@ -23,8 +23,8 @@ class FittedText extends HTMLElement {
         this.style.display = 'flex';
         this.style.position = 'relative';
         this.style.whiteSpace = 'nowrap';
-        this.style.justifyContent = this.getJustify(align);
-        this.fittedContent.setAttribute('style', this.removeLineBreaks(`
+        this.style.justifyContent = FittedText.getJustify(align);
+        this.fittedContent.setAttribute('style', FittedText.removeLineBreaks(`
 			transform-origin: ${align} center;
 			text-align: ${align};
 		`));
@@ -45,7 +45,7 @@ class FittedText extends HTMLElement {
                 this.setTransform();
                 break;
             case 'align':
-                this.style.justifyContent = this.getJustify(newValue);
+                this.style.justifyContent = FittedText.getJustify(newValue);
                 this.fittedContent.style.textAlign = newValue;
                 this.fittedContent.style.transformOrigin = `${newValue} center`;
                 break;
@@ -56,7 +56,7 @@ class FittedText extends HTMLElement {
         }
     }
 
-    setText() {
+    private setText() {
         if (this.useInnerHTML) {
             this.fittedContent.innerHTML = this.text;
         } else {
@@ -64,17 +64,47 @@ class FittedText extends HTMLElement {
         }
     }
 
-    setTransform() {
+    private setTransform() {
         if (this.maxWidth <= 0) return;
-        const scrollWidth = this.fittedContent.scrollWidth;
-        if (scrollWidth > this.maxWidth) {
-            this.fittedContent.style.transform = `scaleX(${this.maxWidth / scrollWidth})`;
+        const width = this.getTextWidth();
+        if (width > this.maxWidth) {
+            this.fittedContent.style.transform = `scaleX(${this.maxWidth / width})`;
         } else {
             this.fittedContent.style.transform = 'scaleX(1)';
         }
     }
 
-    getJustify(align: string): string {
+    private getTextWidth(): number {
+        if (!this.fittedContent.parentNode) {
+            return 0;
+        }
+
+        const scrollWidth = this.fittedContent.scrollWidth;
+
+        // If fitted content has no width (for instance, when the element is not being displayed using display: none),
+        // create an external element to calculate width
+        if (scrollWidth < 1 && this.text !== '') {
+            const measurer = this.fittedContent.cloneNode(true) as HTMLDivElement;
+            const style = window.getComputedStyle(this.fittedContent);
+            measurer.style.font = style.font;
+            measurer.style.fontKerning = style.fontKerning;
+            measurer.style.position = 'absolute';
+            measurer.style.left = '-9999px';
+            measurer.style.top = '-9999px';
+            measurer.style.zIndex = '-9999';
+            measurer.style.opacity = '0';
+            measurer.innerText = this.text;
+
+            document.body.appendChild(measurer);
+            const width = measurer.scrollWidth;
+            document.body.removeChild(measurer);
+            return width;
+        } else {
+            return scrollWidth;
+        }
+    }
+
+    private static getJustify(align: string): string {
         switch (align) {
             case 'center':
                 return 'center';
@@ -122,7 +152,7 @@ class FittedText extends HTMLElement {
         this.setAttribute('align', newValue);
     }
 
-    removeLineBreaks(input: string): string {
+    private static removeLineBreaks(input: string): string {
         return input.replace(/\s+/g, ' ').trim();
     }
 }
