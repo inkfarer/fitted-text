@@ -93,7 +93,11 @@ class FittedText extends HTMLElement {
             measurer.style.top = '-9999px';
             measurer.style.zIndex = '-9999';
             measurer.style.opacity = '0';
-            measurer.innerText = this.text;
+            if (this.useInnerHTML) {
+                measurer.innerHTML = this.text;
+            } else {
+                measurer.innerText = this.text;
+            }
 
             document.body.appendChild(measurer);
             const width = measurer.scrollWidth;

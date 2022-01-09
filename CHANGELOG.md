@@ -1,3 +1,7 @@
+## [2.0.5]
+
+- Fix max width being calculated incorrectly when using `use-inner-html` in some cases
+
 ## [2.0.4]
 
 - Fix transforms not being applied when element is hidden using `display: none`
